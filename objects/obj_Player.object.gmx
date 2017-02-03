@@ -58,28 +58,32 @@ Key_Silver = false;
 if (keyboard_check(vk_left))
     {
     if (!place_meeting(x-velocidad, y, obj_Wall_Parent))&amp;&amp;
-    (!place_meeting(x-velocidad, y, obj_Door_Parent))
+    (!place_meeting(x-velocidad, y, obj_Door_Parent))&amp;&amp;
+    (!place_meeting(x-velocidad, y, obj_Magic_Door))
     {x = x - velocidad;}
     }
     
 if (keyboard_check(vk_right))
     {
     if (!place_meeting(x+velocidad, y, obj_Wall_Parent))&amp;&amp;
-    (!place_meeting(x+velocidad, y, obj_Door_Parent))
+    (!place_meeting(x+velocidad, y, obj_Door_Parent))&amp;&amp;
+    (!place_meeting(x+velocidad, y, obj_Magic_Door))
     {x = x + velocidad;}
     }
     
 if (keyboard_check(vk_up))
     {
     if (!place_meeting(x, y-velocidad, obj_Wall_Parent))&amp;&amp;
-    (!place_meeting(x, y-velocidad, obj_Door_Parent))
+    (!place_meeting(x, y-velocidad, obj_Door_Parent))&amp;&amp;
+    (!place_meeting(x, y-velocidad, obj_Magic_Door))
     {y = y - velocidad;}
     }
     
 if (keyboard_check(vk_down))
     {
     if(!place_meeting(x, y+velocidad, obj_Wall_Parent))&amp;&amp;
-    (!place_meeting(x, y+velocidad, obj_Door_Parent))
+    (!place_meeting(x, y+velocidad, obj_Door_Parent))&amp;&amp;
+    (!place_meeting(x, y+velocidad, obj_Magic_Door))
     {y = y + velocidad;}
     }
 
@@ -229,6 +233,63 @@ if (Key_Silver)
         audio_play_sound(snd_Door, 10, false);
         }
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Gestión Portales
+
+/*Cuando toca la entrada del portal el personaje se transporta a la
+    salida del portal*/
+    
+if(place_meeting(x, y, obj_Portal_Enter))
+    {
+    with(obj_Portal_Enter){instance_destroy()};
+    audio_play_sound(snd_Diamond, 10, false);
+    x = obj_Portal_exit.x;
+    y = obj_Portal_exit.y;
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="obj_Magic_Diamond">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>audio_play_sound(snd_Diamond, 10, false);
+score += 10;
+with(other){instance_destroy();}
 </string>
           </argument>
         </arguments>
